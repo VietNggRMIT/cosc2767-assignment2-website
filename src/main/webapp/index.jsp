@@ -38,7 +38,7 @@
       <br>
       <span class="badge badge-success">IT Major</span>
       <br>
-      <span class="badge badge-danger">Acting, automobiles, firearms</span>
+      <span class="badge badge-danger">Acting, automobiles, firearms, music, video games</span>
       <br>
       <span class="badge badge-warning">Python</span>
       <!-- You only need to change these information, ends here! -->
