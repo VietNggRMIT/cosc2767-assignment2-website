@@ -32,15 +32,15 @@
 
       <!-- You only need to change these information, starts here! -->
       <p>Here is the information you need to change:</p>
-      <span class="badge badge-primary">Nguyen Hoang Viet</span>
+      <span class="badge badge-primary">Enter your name</span>
       <br>
-      <span class="badge badge-secondary">s3926104</span>
+      <span class="badge badge-secondary">Your student ID</span>
       <br>
-      <span class="badge badge-success">IT Major</span>
+      <span class="badge badge-success">Your major</span>
       <br>
-      <span class="badge badge-danger">Acting, automobiles, firearms, music, video games</span>
+      <span class="badge badge-danger">Your hobbies</span>
       <br>
-      <span class="badge badge-warning">Python</span>
+      <span class="badge badge-warning">Your favorite programming language</span>
       <!-- You only need to change these information, ends here! -->
       
 
