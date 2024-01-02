@@ -4,7 +4,7 @@
 // Assessment: Assignment 2
 // Author: Nguyen Hoang Viet
 // ID: s3926104
-// Created  date: 20/02/2023
+// Created date: 20/02/2023
 // Last modified: 28/12/2923
 // Acknowledgement: 
 
@@ -29,24 +29,34 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    sh "cd /home/dockeradmin"
-                    sh "docker build -t tomcat-image-asm2 ."
-                }
-            }
-        }
-
         stage('Deploy Container') {
             steps {
                 script {
-                    // Stop the currently running container if it exists
-                    sh "docker stop tomcat-server || true"
-                    // Remove the stopped container
-                    sh "docker rm tomcat-server || true"
-                    // Run a new container from the built image
-                    sh "docker run -d --name tomcat-server -p 8081:8080 tomcat-image-asm2"
+                    // Find the WAR file path after Maven build
+                    def warPath = sh(script: "find . -name '*.war' | head -n 1", returnStdout: true).trim()
+                    // Publish over SSH to remote Docker server
+                    sshPublisher(publishers: [
+                        sshPublisherDesc(
+                            configName: 'Docker_asm2',
+                            transfers: [
+                                // Transfer the WAR file to the remote server
+                                sshTransfer(
+                                    sourceFiles: warPath,
+                                    removePrefix: 'target',
+                                    remoteDirectory: '/home/dockeradmin'
+                                )
+                            ],
+                            // SSH command to build and run the Docker container
+                            execCommands: """
+                                cd /home/dockeradmin
+                                docker stop tomcat-server || true
+                                docker rm tomcat-server || true
+                                docker rmi tomcat-image-asm2 || true
+                                docker build -t tomcat-image-asm2 .
+                                docker run -d --name tomcat-server -p 8081:8080 tomcat-image-asm2
+                            """
+                        )
+                    ])
                 }
             }
         }
