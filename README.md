@@ -17,6 +17,6 @@ Student ID: s3926104
 GitHub repo: https://github.com/VietNggRMIT/cosc2767-assignment2-website.git
 
 YouTube video links:
-Main requirements: 
+Main requirements: https://youtu.be/ftdIthaj8iA
 
-Advanced requirements: 
+Advanced requirements: N/A
